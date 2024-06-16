@@ -1,0 +1,182 @@
+<!doctype html>
+<html>
+
+<head>
+    <title>Student Timetable</title>
+</head>
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@200&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Goldman&family=Montserrat:wght@200&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Arima+Madurai:wght@300&family=Goldman&family=Montserrat:wght@200&family=Poiret+One&family=Unica+One&display=swap');
+
+        :root{
+	--lightgrey: #6A888C;
+	--darkgrey: #5F7174;
+	--lightgreen: #A5E65A;
+	--turquoise: #00A6C0;
+	--lightblue: #32D9CB;
+}
+	table, th, td {
+  border: 1px solid;
+  border-collapse:collapse;
+
+}
+
+th, td {
+  padding: 20px;
+}
+
+table{
+    margin-left:auto;
+    margin-right:auto;
+    margin-top:20px;
+}
+body{
+	font-family: 'Arima Madurai', cursive;
+	font-size: 20px;
+	line-height: 1.5;
+
+	margin-bottom:40px;
+	background-color: #DDFFF7 ;
+}
+
+.heading{
+
+
+  font-family: 'Unica One', cursive;
+  font-size:40px;
+  text-align: center;
+  margin-top:0px;
+
+}
+
+
+a {
+    margin-top:30px;
+    text-align: left;
+    font-family: 'Arima Madurai', cursive;
+	display: block;
+	color: black;
+	text-decoration: none;
+	padding:10px;
+}
+
+a:hover{
+	text-decoration: underline ;
+
+
+}
+
+.form-box{
+    margin-left:auto;
+	margin-right:auto;
+    display: block;
+    width: 90%;
+    padding: 0.375rem 0.75rem;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #212529;
+    background-color: #fff;
+
+
+}
+
+.submit{
+    margin-left:70px;
+    padding: 0.5rem 1rem;
+    font-size: 1.25rem;
+    border-radius: 0.3rem;
+    background-color:white;
+    border: 0px;
+    margin-top:15px;
+}
+
+p {
+    margin-left:70px;
+}
+    </style>
+
+
+
+<body>
+
+
+ <h3><a href="{{ url_for('home') }}">Home</a></h3>
+<h2 class='heading'>STudenT TimeTable</h2>
+
+<form action="{{ url_for('second')}}" id="survey-form" method="POST">
+		<div class='page'>
+
+		<div class="form-group">
+			<p class='sub'>Choose semester</p>
+			<select id="dropdown" class="form-box" name="sem" required>
+			    <option value="none" disabled selected>Choose semester</option>
+				<option value="3">Semester 3</option>
+				<option value="5">Semester 5</option>
+				<option value="7">Semester 7</option>
+			</select>
+
+            <p class='sub'>Choose section</p>
+			<select id="dropdown" class="form-box" name="sec" required>
+			    <option value="none" disabled selected>Choose section</option>
+				<option value="A" >Section A</option>
+				<option value="B">Section B</option>
+
+			</select>
+
+
+		</div>
+
+
+		<div class="form-group">
+			<button type="submit" class="submit">
+			View Timetable
+			</button>
+		</div>
+
+	</form>
+<h3 class="heading">{{main}}</h3>
+<table>
+	    <tr>
+	        {% for header in headings %}
+	        <th>{{header}}</th>
+	        {% endfor %}
+	    </tr>
+
+
+
+
+
+	    {% for row in data %}
+	    <tr>
+	        {% for cell in row %}
+	        <td>{{cell}}</td>
+	        {% endfor %}
+	    </tr>
+	    {% endfor %}
+
+	</table>
+
+
+
+	<table class='t2'>
+	    <tr>
+	        {% for header in title %}
+	        <th>{{header}}</th>
+	        {% endfor %}
+	    </tr>
+
+	    {% for row in course %}
+	    <tr>
+	        {% for cell in row %}
+	        <td>{{cell}}</td>
+	        {% endfor %}
+	    </tr>
+	    {% endfor %}
+	</table>
+
+
+	</div>
+</body>
+</html>
